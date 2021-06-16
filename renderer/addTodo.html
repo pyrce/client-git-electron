@@ -1,0 +1,13 @@
+<p>add tache</p>
+
+<input type="text" name="tache" id="tache" /> <button onclick="addTask()">Ajout</button>
+
+<script>
+
+const { ipcRenderer } = require('electron')
+
+function addTask(){
+let tache=document.getElementById("tache").value;
+    ipcRenderer.send("addtask",tache);
+}
+</script>

@@ -1,0 +1,31 @@
+<section id="commit_message">
+
+<aside >
+eeeee
+</aside>
+
+<label>Message</label>
+<textarea name="" id="" cols="30" rows="10"></textarea>
+
+</section>
+
+<style>
+
+    #commit_message{
+        display: grid;
+    grid-template: "file txt txt"
+               "file message message"
+               "file message message";
+    }
+
+    aside{
+        grid-area: file;
+        width: 20%;
+    }
+    label{
+        grid-area: txt;
+    }
+    textarea{
+        grid-area: message;
+    }
+</style>
