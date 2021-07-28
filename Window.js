@@ -5,15 +5,15 @@ const path = require('path')
 
 // default window settings
 const defaultProps = {
-  width: 1400,
-  height: 900,
-  show: false,
-  
-  // update for electron V5+
+  width: 1280,
+  height: 700,
+  //frame: false,
+  minWidth: 1080,
+  minHeight: 630,
   webPreferences: {
-    nodeIntegration: true,
-    contextIsolation: false
-   // preload: path.join(__dirname, 'preload.js')
+      nodeIntegration: true,
+      enableRemoteModule: true,
+      contextIsolation: false
   }
 }
 const template = [
