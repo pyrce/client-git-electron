@@ -28,7 +28,7 @@ ipcMain.on("commit-event", async (err, directory) => {
 })
 
 ipcMain.on("git-commit", async (event,directory,message)=>{
-
+console.log(message)
 //  git.run_script(`cd ${directory} && git add . && git commit -m '${message}'`,"status",event)
 try {
     const git    = await simpleGit(directory);
