@@ -28,7 +28,7 @@ ipcMain.on("commit-event", async (err, directory) => {
 })
 
 ipcMain.on("git-commit", async (event,directory,message)=>{
-console.log(message)
+
 //  git.run_script(`cd ${directory} && git add . && git commit -m '${message}'`,"status",event)
 try {
     const git    = await simpleGit(directory);
@@ -41,7 +41,7 @@ try {
         message: "Vous êtes prêt à push"
     })
 } catch (error) {
-  
+  console.log(error)
     event.sender.send("erreurs",{
         message: "Commit message vide"
     })
