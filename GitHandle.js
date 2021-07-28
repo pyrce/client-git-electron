@@ -34,9 +34,7 @@ try {
     const git    = await simpleGit(directory);
     await git.add('./*')
     await git.commit(message);
-    await res.status(200).json({
-        message: "Vous êtes prêt à push"
-    });
+    
     event.sender.send("success",{
         message: "Vous êtes prêt à push"
     })
