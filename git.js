@@ -35,3 +35,11 @@ ipcRenderer.on("success", (event,message) => {
 function commit(){
         ipcRenderer.send("git-commit",document.getElementById("currentfile").value,document.getElementById("message").value);
 }
+
+document.getElementById("pushBtn").addEventListener("click", (event) => {
+  ipcRenderer.send("git-push",document.getElementById("currentfile").value);
+})
+
+document.getElementById("pullBtn").addEventListener("click", (event) => {
+  ipcRenderer.send("git-pull",document.getElementById("currentfile").value);
+})

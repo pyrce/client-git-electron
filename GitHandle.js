@@ -45,3 +45,41 @@ try {
     })
 }
 })
+
+ipcMain.on("git-push", async (event,directory)=>{
+
+   
+    try {
+        const git    = await simpleGit(directory);
+
+        await git.push();
+        
+        event.sender.send("success",{
+            message: "push reussi"
+        })
+    } catch (error) {
+      console.log(error)
+        event.sender.send("erreurs",{
+            message: "Vous devez commit et pull d'abord"
+        })
+    }
+    })
+    
+    ipcMain.on("git-pull", async (event,directory)=>{
+
+
+        try {
+            const git    = await simpleGit(directory);
+    
+            await git.pull();
+            
+            event.sender.send("success",{
+                message: "pull reussi"
+            })
+        } catch (error) {
+          console.log(error)
+            event.sender.send("erreurs",{
+                message: "Vous devez commit et pull d'abord"
+            })
+        }
+        })
