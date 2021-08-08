@@ -11,8 +11,11 @@
   <body>
 <div id="container">
 
+<div id="menu" style="display:flex;justify-content: space-between;">
+<h2>Client Git</h2>
 
-
+<div> <button id="closeApp">X</button> </div>
+  </div>
 <input type="hidden" value="" id="currentfolder"/>
 <input type="hidden" value="" id="currentfile"/>
   <div id="actions">
@@ -23,8 +26,8 @@
      <button id="pushBtn" title="Push"><i class="fas fa-arrow-circle-up"></i></button>
      <button id="pullBtn" title="Pull"> <i class="fas fa-arrow-circle-down"></i></button>
      <button id="compareBtn" title="Diff"> <i class="fas fa-map-signs"></i></button>
-     <button id="initGit" title="new git"> <i class="fas fa-file-alt"></i></button>
      <button id="changeRepo" title="Modifier repo"><i class="fas fa-edit"></i></button>
+     <button id="initGit" title="new git"> <i class="fas fa-file-alt"></i></button>
 </div>
 <div id="main">
 <div id="myUL">
@@ -76,5 +79,6 @@
 <script src="treeClass.js"></script>
     <script src="./script.js" ></script>
     <script src="./git.js" ></script>
+    <script src="./menu.js" ></script>
   </body>
 </html>

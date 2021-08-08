@@ -7,7 +7,7 @@ const path = require('path')
 const defaultProps = {
   width: 1280,
   height: 700,
-  //frame: false,
+  frame: false,
   minWidth: 1080,
   minHeight: 630,
   webPreferences: {
@@ -21,15 +21,8 @@ const template = [
     label: 'Fichier',
     submenu: [
       {
-        label: 'Ouvrir',
-        click () {   dialog.showOpenDialog(mainWindow, {
-          properties: ['openFile', 'openDirectory']
-        }).then(result => {
-          console.log(result.canceled)
-          console.log(result.filePaths)
-        }).catch(err => {
-          console.log(err)
-        })  }
+        label: 'quitter',
+        click () {   application.quit(); }
       }
     ]
   }
