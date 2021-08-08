@@ -1,7 +1,7 @@
 function listeDir(element) {
 
     let tree=generateTree(element)
-    document.getElementById("gitDir").innerHTML=tree
+    document.getElementById("myUL").innerHTML=tree
     var toggler = document.getElementsByClassName("caret");
     for (i = 0; i < toggler.length; i++) {
       toggler[i].addEventListener("click", function() {

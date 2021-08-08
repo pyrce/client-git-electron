@@ -1,11 +1,7 @@
-ul, #gitDir {
+ul, #myUL {
   list-style-type: none;
 }
 
-#myUL {
-  margin: 0;
-  padding: 0;
-}
 
 .caret {
   cursor: pointer;
@@ -15,12 +11,19 @@ ul, #gitDir {
   user-select: none;
 }
 
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
 .caret-down::before {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */
   transform: rotate(90deg);  
 }
-i{
-  margin-right: 8px;
-}
+
 .nested {
   display: none;
 }
@@ -28,57 +31,133 @@ i{
 .active {
   display: block;
 }
-#myUL{
+
+#myUL {
+  list-style-type: none;
   width: 30%;
-  background-color: #26A69A;
-  overflow-y: scroll;
+  background: #e0e5ec;
+  overflow-y: scroll;  
+  margin: 0;
+  padding: 0;
 }
- #content{
+#filediff,#filetext{
+  visibility: hidden;
+
+}
+
+#commits{
+  visibility: hidden;
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+#content {
   overflow-y: scroll;
   width: 70%;
-  background-color: blanchedalmond;
- }
- #container{
-   height: 40rem;
-   display: flex;
-   flex-direction: row;
- }
-
- /* width */
+  background-color: #96D1DB;
+}
+textarea{
+  width: 100%;
+  height: 80%;
+  flex-direction: row;
+  background-color: #DBD27F;
+}
+#container {
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+}
+#main{
+  display: flex;
+  flex-direction: row; 
+  height: inherit;
+}
+/* width */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: burlywood; 
+  background: burlywood;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
+  background: #b30000;
 }
 
-#nav{
+#nav {
   display: flex;
   justify-content: stretch;
   flex-direction: column;
   width: 100%;
-    padding: 0;
+  padding: 0;
 }
 
 
 #nav li {
-background-color: lime;
-height: 2em;
-margin-top: 10px;
+  background-color: lime;
+  height: 2em;
+  margin-top: 10px;
+}
+
+#actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  background: #e0e5ec;
+
+  position: relative;
+  box-shadow:
+    -7px -7px 20px 0px #fff9,
+    -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002,
+    4px 4px 5px 0px #0001,
+    inset 0px 0px 0px 0px #fff9,
+    inset 0px 0px 0px 0px #0001,
+    inset 0px 0px 0px 0px #fff9, inset 0px 0px 0px 0px #0001;
+  transition: box-shadow 0.6s cubic-bezier(.79, .21, .06, .81);
+  border-radius: 10px;
+}
+#initGit{
+  visibility: hidden;
+}
+button {
+	width: 90px;
+	height: 50px;
+	cursor: pointer;
+	border: none;
+	font-family: 'Comfortaa', cursive;
+	color: #100707e6;
+	font-size: 20px;
+	border-radius: 4px;
+	box-shadow: inset 0px 3px 5px rgba(255,255,255,0.5), 0px 0px 10px rgba(0,0,0,0.15);
+	background: rgb(2,0,36);
+background: linear-gradient(45deg, rgba(2,0,36,0) 5%, rgba(255,255,255,.5) 6%, rgba(255,255,255,0) 9%, rgba(255,255,255,.5) 10%, rgba(255,255,255,0) 17%, rgba(255,255,255,.5) 19%, rgba(255,255,255,0) 21%);
+	background-size: 150%;
+	background-position: right;
+	transition: 1s;
+}
+
+button:hover {
+	background-position: left;
+	color: white;
+	box-shadow: inset 0px 3px 5px rgba(255,255,255,1), 0px 0px 10px rgba(0,0,0,0.25);
+}
+
+button:focus {
+	outline: none;
 }
 
 /*
@@ -88,17 +167,26 @@ margin-top: 10px;
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
 }
 
 /* Modal Content */

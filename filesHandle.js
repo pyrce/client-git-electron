@@ -10,9 +10,10 @@ ipcMain.on("open-file", (event, args) => {
     dialog.showOpenDialog(null, {
         properties: ['openFile', 'openDirectory']
     }).then(result => {
-        mypath = result.filePaths[0]
-        myfiles = loaddir(mypath);
-        event.sender.send("get-all", myfiles, mypath);
+       let mypath = result.filePaths[0]
+        let myfiles = loaddir(mypath);
+        let isGit=fs.existsSync(mypath+"/.git");
+        event.sender.send("get-all", myfiles, mypath,isGit);
 
     }).catch(err => {
         console.log(err)

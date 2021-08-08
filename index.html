@@ -13,23 +13,33 @@
 
 
 
+<input type="hidden" value="" id="currentfolder"/>
 <input type="hidden" value="" id="currentfile"/>
+  <div id="actions">
 
+     <button id="selectBtn" title="Open folder">  <i class="fas fa-folder"></i></button>  
+     <button id="saveBtn" title="Save file"><i class="fas fa-save"></i></button>
+     <button id="commitBtn" title="Commit"> <i class="fas fa-plus-circle"></i></button>
+     <button id="pushBtn" title="Push"><i class="fas fa-arrow-circle-up"></i></button>
+     <button id="pullBtn" title="Pull"> <i class="fas fa-arrow-circle-down"></i></button>
+     <button id="compareBtn" title="Diff"> <i class="fas fa-map-signs"></i></button>
+     <button id="initGit" title="new git"> <i class="fas fa-file-alt"></i></button>
+     <button id="changeRepo" title="Modifier repo"><i class="fas fa-edit"></i></button>
+</div>
+<div id="main">
 <div id="myUL">
-    <button id="selectBtn">Open</button>  
-    <button id="saveBtn">save</button>
-    <button id="commitBtn">Commit</button>
-    <button id="pushBtn">Push</button>
-    <button id="pullBtn">Pull</button>
 
-    
-  <ul id="gitDir">
-  </ul>
 </div>
 
-<textarea id="content"></textarea>
+<div id="content">
 
+<select name="" id="commits"></select>
+<span id="file" style="display:block"></span>
+  <textarea name="" id="filetext"></textarea>
+  <textarea name="" id="filediff"></textarea>
+</div>
 
+</div>
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
@@ -42,6 +52,19 @@
 
 </div>
 
+<div id="gitmodal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+
+   <label for="">Remote url</label>
+   <input type="text" name="" id="repo_url">
+   <button onclick="gitInit()">Init git</button>
+  </div>
+
+</div>
+
 </div>
     <script src="./prism/prism.js"></script>
 <script src="https://kit.fontawesome.com/e2a4bb1024.js" crossorigin="anonymous"></script>
@@ -49,6 +72,7 @@
 
     <!-- You can also require other files to run in this process -->
 
+    
 <script src="treeClass.js"></script>
     <script src="./script.js" ></script>
     <script src="./git.js" ></script>

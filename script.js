@@ -21,20 +21,30 @@ $(function () {
 
 
 
-  ipcRenderer.on("get-all", (event, dossier,path) => {
- 
-    document.getElementById("currentfile").value = path; 
+  ipcRenderer.on("get-all", (event, dossier, path, isGit) => {
+    console.log(isGit);
+
+    document.getElementById("currentfolder").value = path;
     listeDir(dossier)
+    if (isGit === false) {
+      document.getElementById("initGit").style.visibility = "visible"
+    }
   })
 
-  ipcRenderer.on("content", (event, content, path,ext) => { 
-  
-  //  content="```"+ext+"\r"+content+"\n"+"```";
-    document.getElementById("currentfile").value = path; 
-    
-   document.getElementById("content").innerHTML = content 
-   // document.getElementById("content").create();
-   Prism.highlightAll(document.querySelector("#content"));
+  ipcRenderer.on("content", (event, content, path, ext) => {
+    document.getElementById("file").innerHTML = path.substring(path.lastIndexOf("/") + 1)
+    document.getElementById("filetext").style.visibility = "visible";
+    //  content="```"+ext+"\r"+content+"\n"+"```";
+    document.getElementById("currentfile").value = path;
+
+    document.getElementById("filetext").innerHTML = content
+    // document.getElementById("content").create();
+    Prism.highlightAll(document.querySelector("#content"));
+
+    if (document.getElementById("commits").value) {
+      ipcRenderer.send("git-diff", document.getElementById("currentfolder").value, document.getElementById("commits").value, document.getElementById("currentfile").value);
+    }
+
   })
 
   document.getElementById("saveBtn").addEventListener("click", (event) => {
