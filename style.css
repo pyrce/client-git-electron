@@ -30,6 +30,7 @@ ul, #myUL {
 
 .active {
   display: block;
+  margin-left: 18px;
 }
 
 #myUL {
@@ -51,7 +52,9 @@ ul, #myUL {
   justify-content: flex-end;
 }
 
-
+#changeRepo{
+  visibility: hidden;
+}
 #content {
   overflow-y: scroll;
   width: 70%;
@@ -63,16 +66,8 @@ textarea{
   flex-direction: row;
   background-color: #DBD27F;
 }
-#container {
-  height: 40rem;
-  display: flex;
-  flex-direction: column;
-}
-#main{
-  display: flex;
-  flex-direction: row; 
-  height: inherit;
-}
+
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

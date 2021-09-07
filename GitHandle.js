@@ -3,8 +3,9 @@ const GitUtils = require('./gitUtils.js');
 const simpleGit = require('simple-git');
 const { app, BrowserWindow, ipcMain, dialog, ipcRenderer, shell } = require('electron');
 let addTodoWin;
-var fileToCommit = "";
-var fileToAdd = "";
+const dirTree = require("directory-tree");
+const fs = require('fs');
+const path = require('path')
 const { exec } = require('child_process');
 const e = require("express");
 let git = new GitUtils
@@ -36,7 +37,7 @@ ipcMain.on("git-commit", async (event, directory, message) => {
 
         event.sender.send("message", {
             status:"success",
-            message: "Vous êtes prêt à push"
+            message: "Commit effectué"
         })
     } catch (error) {
         console.log(error)
@@ -53,15 +54,22 @@ ipcMain.on("git-init", async (event, directory, repoUrl) => {
 
     try {
         const git = await simpleGit(directory);
-
+        console.log(directory)
         await git.init();
-        await git.addRemote("origin", repoUrl)
+        fs.writeFileSync(directory+"/readme.md","git init");
+        await git.add('./*');
+        await git.commit("first commit!");
+        await git.branch(['-M', 'main']);
+        await git.addRemote('origin', repoUrl);
+        await git.push(['-u', 'origin', 'main']);
 
         event.sender.send("message", {
             status:"success",
             message: "Initialisation git reussi"
         })
-
+        let files=loaddir(directory)
+        let isGit=fs.existsSync(directory+"/.git");
+        event.sender.send("get-all", files, directory,isGit);
     } catch (error) {
         console.log(error)
         event.sender.send("message", {
@@ -75,8 +83,8 @@ ipcMain.on("git-push", async (event, directory) => {
 
     try {
         const git = await simpleGit(directory);
-
-        await git.push("origin");
+        await git.push(['origin', 'master']);
+        // await git.push("origin");
 
         event.sender.send("message", {
             status:"success",
@@ -97,17 +105,20 @@ ipcMain.on("git-pull", async (event, directory) => {
     try {
         const git = await simpleGit(directory);
 
-        await git.pull();
+        await git.pull(["origin","master"]);
 
         event.sender.send("message", {
             status:"success",
             message: "pull reussi"
         })
+        let files=loaddir(directory)
+        let isGit=fs.existsSync(directory+"/.git");
+        event.sender.send("get-all", files, directory,isGit);
     } catch (error) {
         console.log(error)
         event.sender.send("message", {
             status:"error",
-            message: "Vous devez commit d'abord"
+            message: "Erreur pull"
         })
     }
 })
@@ -142,6 +153,7 @@ ipcMain.on("git-diff", async (event,directory, commit, fichier) => {
     try {
 
         await exec(`cd ${directory} & git diff ${commit} ${fichier}`, (err, stdout, stderr) => {
+            
             event.sender.send("file-diff",
                 stdout,fichier
             )
@@ -177,3 +189,13 @@ ipcMain.on("git-repoEdit", async (event,directory,newRepo) => {
         })
     }
 })
+
+function loaddir(mypath) {
+
+    let tree = "";
+    if (mypath != "") {
+        tree = dirTree(mypath, { exclude: /.git/, normalizePath: true });
+    }
+    //console.log(tree)
+    return tree;
+}

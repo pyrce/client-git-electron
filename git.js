@@ -73,7 +73,7 @@ ipcRenderer.on("file-diff", (evt, dif, file) => {
 
 ipcRenderer.on("liste-commits", (evt, commits) => {
 
-  ipcRenderer.send("git-diff", document.getElementById("commits").value, document.getElementById("currentfile").value);
+  ipcRenderer.send("git-diff",document.getElementById("currentfolder").value, document.getElementById("commits").value, document.getElementById("currentfile").value);
   document.getElementById("commits").style.visibility = "visible";
   commits.forEach(com => {
     document.getElementById("commits").innerHTML += "<option>" + com + "</option>"

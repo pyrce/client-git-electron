@@ -23,17 +23,20 @@ $(function () {
 
   ipcRenderer.on("get-all", (event, dossier, path, isGit) => {
     console.log(isGit);
-
+  document.getElementById("changeRepo").style.visibility = "visible";
     document.getElementById("currentfolder").value = path;
     listeDir(dossier)
     if (isGit === false) {
       document.getElementById("initGit").style.visibility = "visible"
+    }else{
+      document.getElementById("initGit").style.visibility = "hidden"
     }
   })
 
   ipcRenderer.on("content", (event, content, path, ext) => {
     document.getElementById("file").innerHTML = path.substring(path.lastIndexOf("/") + 1)
     document.getElementById("filetext").style.visibility = "visible";
+  
     //  content="```"+ext+"\r"+content+"\n"+"```";
     document.getElementById("currentfile").value = path;
 
@@ -49,7 +52,7 @@ $(function () {
 
   document.getElementById("saveBtn").addEventListener("click", (event) => {
 
-    let newcontent = document.getElementById("content").value
+    let newcontent = document.getElementById("filetext").value
     let file = document.getElementById("currentfile").value
 
     if (newcontent.length != "")

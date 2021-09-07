@@ -5,11 +5,11 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <link rel="stylesheet" href="./prism/prism.css">
     <link rel="stylesheet" href="style.css">
-
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <title>Hello World!</title>
   </head>
   <body>
-<div id="container">
+<div id="container" class="grid grid-flow-row">
 
 <div id="menu" style="display:flex;justify-content: space-between;">
 <h2>Client Git</h2>
@@ -29,12 +29,12 @@
      <button id="changeRepo" title="Modifier repo"><i class="fas fa-edit"></i></button>
      <button id="initGit" title="new git"> <i class="fas fa-file-alt"></i></button>
 </div>
-<div id="main">
-<div id="myUL">
+<div id="main" class="flex h-screen w-full">
+<div id="myUL" class="w-3/12">
 
 </div>
 
-<div id="content">
+<div id="content"  class="w-4">
 
 <select name="" id="commits"></select>
 <span id="file" style="display:block"></span>
@@ -46,10 +46,10 @@
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
+  <div class="modal-content grid grid-flow-rows">
+    <span class="close text-right">&times;</span>
    <label for="">Message</label>
-   <input type="text" name="" id="message">
+   <input type="text" name="" id="message" class="border border-red-500 focus:border-blue-500">
    <button onclick="commit()">Commit</button>
   </div>
 
@@ -58,11 +58,11 @@
 <div id="gitmodal" class="modal">
 
   <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
+  <div class="modal-content grid grid-flow-rows">
+    <span class="close text-right">&times;</span>
 
    <label for="">Remote url</label>
-   <input type="text" name="" id="repo_url">
+   <input type="text" name="" id="repo_url" class="border border-red-500 focus:border-blue-500">
    <button onclick="gitInit()">Init git</button>
   </div>
 

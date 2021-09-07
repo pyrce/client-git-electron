@@ -36,7 +36,10 @@ ipcMain.on("save-file", (event, file, content) => {
 
     try {
         fs.writeFileSync(file, content)
-        console.log("sauvegarde reussi")
+        event.sender.send("message", {
+            status:"success",
+            message: "fichier sauvegarder"
+        })
     } catch (error) {
         console.log(error);
     }
