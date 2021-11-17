@@ -20,7 +20,7 @@
     "electron": "^13.1.2"
   },
   "dependencies": {
-    "directory-tree": "^2.2.9",
+    "directory-tree": "^3.0.1",
     "express": "^4.17.1",
     "jquery": "^3.6.0",
     "nodegit": "^0.27.0",
