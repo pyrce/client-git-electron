@@ -25,6 +25,6 @@
     "jquery": "^3.6.0",
     "nodegit": "^0.27.0",
     "simple-git": "^2.40.0",
-    "sweetalert2": "^11.1.0"
+    "sweetalert2": "^11.4.20"
   }
 }
