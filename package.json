@@ -17,7 +17,7 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^13.1.2"
+    "electron": "^20.2.0"
   },
   "dependencies": {
     "directory-tree": "^2.2.9",
